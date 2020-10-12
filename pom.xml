@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.sitture</groupId>
-	<artifactId>fitnesse-mvn-example</artifactId>
+	<artifactId>fitnesse-maven-example</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>fitnesse-mvn-example</name>
+	<name>fitnesse-maven-example</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -132,7 +132,7 @@
 							<properties>
 								<property>
 									<name>listener</name>
-									<value>com.sitture.JUnitXMLPerPageListener,com.sitture.ProgressLoggerListener</value>
+									<value>com.github.sitture.JUnitXMLPerPageListener,com.github.sitture.ProgressLoggerListener</value>
 								</property>
 							</properties>
 							<!-- Our listener will create XML failsafe should not, or all tests
@@ -188,13 +188,6 @@
 											<artifactId>maven-classpath-plugin</artifactId>
 											<version>1.9</version>
 											<classifier>jar-with-dependencies</classifier>
-											<overWrite>true</overWrite>
-										</artifactItem>
-										<artifactItem>
-											<groupId>org.fitnesse.plugins</groupId>
-											<artifactId>fitnesse-git-plugin</artifactId>
-											<version>1.1.1</version>
-											<classifier>all</classifier>
 											<overWrite>true</overWrite>
 										</artifactItem>
 									</artifactItems>

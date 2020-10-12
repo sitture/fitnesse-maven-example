@@ -1,5 +1,6 @@
-# fitnesse-mvn-example
-An example maven based Fitnesse project.
+# fitnesse-maven-example
+
+An example maven based Fitnesse project generated using [fitnesse-quickstart](https://github.com/sitture/fitnesse-quickstart) archetype.
 
 ## Starting FitNesse
 
