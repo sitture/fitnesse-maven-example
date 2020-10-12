@@ -1,4 +1,4 @@
-package com.sitture;
+package com.github.sitture;
 
 import org.junit.runner.RunWith;
 

@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package com.sitture.config;
+package com.github.sitture.config;
 
 import java.net.MalformedURLException;
 import java.net.URL;

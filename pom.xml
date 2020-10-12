@@ -1,38 +1,30 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.sitture</groupId>
-	<artifactId>fitnesse-mvn-example</artifactId>
-	<version>1.0-SNAPSHOT</version>
+	<groupId>com.github.sitture</groupId>
+	<artifactId>fitnesse-maven-example</artifactId>
+	<version>1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>fitnesse-mvn-example</name>
+	<name>fitnesse-maven-example</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<versions.fitnesse>20161106</versions.fitnesse>
-		<versions.junit>4.12</versions.junit>
-		<versions.freemarker>2.3.23</versions.freemarker>
-        <versions.maven-classpath-plugin>1.9</versions.maven-classpath-plugin>
-		<versions.maven-compiler-plugin>3.5.1</versions.maven-compiler-plugin>
-		<versions.fitnesse-git-plugin>1.1.1</versions.fitnesse-git-plugin>
-		<versions.maven.exec>1.4.0</versions.maven.exec>
-		<versions.maven-assembly>2.6</versions.maven-assembly>
 		<standalone.classpath>FitNesse/fixtures</standalone.classpath>
 		<port>8082</port>
-        <suitePath>FitNesse.SuiteAcceptanceTests</suitePath>
+		<suitePath>FitNesse.SuiteAcceptanceTests</suitePath>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<!-- commons collections with important security fix (to overwrite Velocity's) -->
 			<dependency>
-				<groupId>commons-collections</groupId>
-				<artifactId>commons-collections</artifactId>
-				<version>3.2.2</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-collections4</artifactId>
+				<version>4.4</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -41,19 +33,24 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>${versions.junit}</version>
+			<version>4.13</version>
 		</dependency>
 		<!-- Fitnesse -->
 		<dependency>
 			<groupId>org.fitnesse</groupId>
 			<artifactId>fitnesse</artifactId>
-			<version>${versions.fitnesse}</version>
+			<version>20200501</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
-			<version>${versions.freemarker}</version>
+			<version>2.3.30</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.4</version>
 		</dependency>
 	</dependencies>
 
@@ -68,10 +65,10 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
-						<version>${versions.maven-compiler-plugin}</version>
+						<version>3.8.1</version>
 						<configuration>
-							<source>1.7</source>
-							<target>1.7</target>
+							<source>1.8</source>
+							<target>1.8</target>
 							<encoding>${project.build.sourceEncoding}</encoding>
 							<showDeprecation>true</showDeprecation>
 						</configuration>
@@ -79,7 +76,7 @@
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>exec-maven-plugin</artifactId>
-						<version>${versions.maven.exec}</version>
+						<version>3.0.0</version>
 						<executions>
 							<execution>
 								<phase>test</phase>
@@ -104,8 +101,9 @@
 						</configuration>
 					</plugin>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-surefire-plugin</artifactId>
-						<version>2.19</version>
+						<version>2.22.2</version>
 						<configuration>
 							<excludes>
 								<!-- this test actually runs fitnesse tests therefore it will only
@@ -115,8 +113,9 @@
 						</configuration>
 					</plugin>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-failsafe-plugin</artifactId>
-						<version>2.19</version>
+						<version>2.22.2</version>
 						<executions>
 							<execution>
 								<goals>
@@ -133,7 +132,7 @@
 							<properties>
 								<property>
 									<name>listener</name>
-									<value>com.sitture.JUnitXMLPerPageListener,com.sitture.ProgressLoggerListener</value>
+									<value>com.github.sitture.JUnitXMLPerPageListener,com.github.sitture.ProgressLoggerListener</value>
 								</property>
 							</properties>
 							<!-- Our listener will create XML failsafe should not, or all tests
@@ -146,8 +145,9 @@
 							to ${standalone.classpath}, where classes from this project end up also,
 							so that all fixtures and dependencies are available to Fitnesse without need
 							to have Maven to run tests. -->
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.10</version>
+						<version>3.1.2</version>
 						<configuration>
 							<includes>**/*</includes>
 							<excludes>META-INF,META-INF/**</excludes>
@@ -186,15 +186,8 @@
 										<artifactItem>
 											<groupId>org.fitnesse.plugins</groupId>
 											<artifactId>maven-classpath-plugin</artifactId>
-											<version>${versions.maven-classpath-plugin}</version>
+											<version>1.9</version>
 											<classifier>jar-with-dependencies</classifier>
-											<overWrite>true</overWrite>
-										</artifactItem>
-										<artifactItem>
-											<groupId>org.fitnesse.plugins</groupId>
-											<artifactId>fitnesse-git-plugin</artifactId>
-											<version>${versions.fitnesse-git-plugin}</version>
-											<classifier>all</classifier>
 											<overWrite>true</overWrite>
 										</artifactItem>
 									</artifactItems>
@@ -211,8 +204,9 @@
 						</executions>
 					</plugin>
 					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-assembly-plugin</artifactId>
-						<version>${versions.maven-assembly}</version>
+						<version>3.3.0</version>
 						<configuration>
 							<descriptors>
 								<descriptor>src/assembly/standalone.xml</descriptor>

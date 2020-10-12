@@ -1,4 +1,4 @@
-package com.sitture.config;
+package com.github.sitture.config;
 
 import freemarker.template.Configuration;
 import freemarker.template.Template;

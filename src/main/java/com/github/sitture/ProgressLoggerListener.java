@@ -1,4 +1,4 @@
-package com.sitture;
+package com.github.sitture;
 
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
