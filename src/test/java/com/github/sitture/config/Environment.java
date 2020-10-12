@@ -1,4 +1,4 @@
-package com.sitture.config;
+package com.github.sitture.config;
 
 import java.io.File;
 import java.util.concurrent.ConcurrentHashMap;
